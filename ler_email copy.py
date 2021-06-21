@@ -48,5 +48,5 @@ def read_email_from_gmail():
 
 
                 
-
+#executando a função de leitura de e-mail
 read_email_from_gmail()
