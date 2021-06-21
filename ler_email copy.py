@@ -8,7 +8,7 @@ import traceback
 #Credenciais, porta e SMTP padrão gmail
 ORG_EMAIL = "lucccasestefano1@gmail.com" 
 FROM_EMAIL = "lucccasestefano1@gmail.com"
-FROM_PWD = "tirodefuzil762" 
+FROM_PWD = "xxxxxxxxx" 
 SMTP_SERVER = "imap.gmail.com" 
 SMTP_PORT = 993
 
