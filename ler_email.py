@@ -5,7 +5,7 @@ import email
 
 #Varáveis de conexão (usar dados do e-mail):
 from_email = "lucccasestefano1@gmail.com"
-from_pwd = "xxxxxxxx"
+from_pwd = "xxxxxx"
 smtp_server = "smtp.gmail.com"
 smtp_port = 993
 
