@@ -1,30 +1,28 @@
-#Import dos módulos para conectar ao e-mail:
 import imaplib
 import email
 
+FROM_EMAIL = "lucccasestefano1@gmail.com"  # substitua <seuemail> pelo seu email.
+FROM_PWD = "xxxx"  # substitua <suasenha> pela sua senha
+SMTP_SERVER = "imap.gmail.com"  # padrão
+SMTP_PORT = 993  # padrão
 
-#Varáveis de conexão (usar dados do e-mail):
-from_email = "lucccasestefano1@gmail.com"
-from_pwd = "xxxxxx"
-smtp_server = "smtp.gmail.com"
-smtp_port = 993
 
 def read_email():
     try:
-        mail = imaplib.IMAP4_SSL(smtp_server)
-        mail.login(from_email, from_pwd)
-        mail.select('Oi', readonly=False)
+        mail = imaplib.IMAP4_SSL(SMTP_SERVER)
+        mail.login(FROM_EMAIL, FROM_PWD)
+        mail.select('inbox', readonly=False)
 
-        type_mail, data = mail.search(None, 'ENC: CLARO CLARO MT 0000433_2021 Proposta')
+        type_mail, data = mail.search(None, 'SUBJECT CLARO')
         mail_ids = data[0]
 
         id_list = mail_ids.split()
         first_email_id = int(id_list[0])
         latest_email_id = int(id_list[-1])
-        print("Reading emails from {} to {}.\n\n".format(latest_email_id, first_email_id))
+        print("Lendo e-mails de {} para {}.\n\n".format(latest_email_id, first_email_id))
 
         for i in range(latest_email_id, first_email_id, -1):
-            typ, data = mail.fetch(str.encode(str(i)), '(RFC822)')
+            typ, data = mail.fetch(str(i), '(RFC822)')
 
             for response_part in data:
                 if not isinstance(response_part, tuple):
@@ -32,9 +30,6 @@ def read_email():
 
                 msg = email.message_from_string(response_part[1].decode('utf-8'))
                 mail_str = str(msg)
-
-
-
 
                 # Se e-mail não contém a estrutura que precisamos, não processa
                 if mail_str.find('<td class="luceeH0">SQL</td>') <= 1:
@@ -49,11 +44,6 @@ def read_email():
                 detail_pos_fim = mail_str.find('</td>', detail_pos_inter)
                 detail_str = mail_str[detail_pos_inter + 20:detail_pos_fim]
 
-                # SQL EVENTO
-                sql_pos_ini = mail_str.find('<td class="luceeH0">SQL</td>')
-                sql_pos_inter = mail_str.find('<td class="luceeN1">', sql_pos_ini)
-                sql_pos_fim = mail_str.find('</td>', sql_pos_inter)
-                sql_str = mail_str[sql_pos_inter + 20:sql_pos_fim]
 
                 # DATA/HORA EVENTO
                 datetime_error_pos_ini = mail_str.find('<h2>{ts ')

@@ -8,12 +8,12 @@ import traceback
 #Credenciais, porta e SMTP padrão gmail
 ORG_EMAIL = "lucccasestefano1@gmail.com" 
 FROM_EMAIL = "lucccasestefano1@gmail.com"
-FROM_PWD = "XXXXX" 
+FROM_PWD = "xxx"
 SMTP_SERVER = "imap.gmail.com" 
 SMTP_PORT = 993
 
 #função que faz a leitura
-def read_email_from_gmail():
+def ler_email_gmail():
     try:
         mail = imaplib.IMAP4_SSL(SMTP_SERVER)
         mail.login(FROM_EMAIL,FROM_PWD)
@@ -27,7 +27,7 @@ def read_email_from_gmail():
         first_email_id = int(id_list[0])
         latest_email_id = int(id_list[-1])
 
-        #Busca um e-mail com Id específico através do rptocolo RFC822
+        #Busca um e-mail com Id específico através do protocolo RFC822
         for i in range(latest_email_id,first_email_id, -1):
             data = mail.fetch(str(i), '(RFC822)' )
             for response_part in data:
@@ -38,15 +38,12 @@ def read_email_from_gmail():
                     email_from = msg['from']
                     print('From : ' + email_from + '\n')
                     print('Subject : ' + email_subject + '\n')
-
-
-                    
+                    print('')
+                   # print( 'Retornando os e-mails de {} para {}'.format(first_email_id, latest_email_id))        
 
     except Exception as e:
         traceback.print_exc() 
         print(str(e))
 
 
-                
-#executando a função de leitura de e-mail
-read_email_from_gmail()
+ler_email_gmail()
