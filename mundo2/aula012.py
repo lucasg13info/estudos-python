@@ -1,3 +1,5 @@
+#Categoria do atleta
+
 nome = str(input('Qual é o seu nome? '))
 
 if nome == ('Lucas'):
