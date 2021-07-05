@@ -29,11 +29,28 @@ print(f'Essa lista tem {len(num)} elementos') # Lista a quantidade de elementos
 print(num)
 
 
-
-
+#remove o num 5 se ele existir na lista
 num2 = [0, 4, 5]
 if 5 in num2:
     num2.remove(5)
 else:
     print('Não achei o número 5')
 print(num2)
+
+
+
+#Adicionando valores de entrada em lista
+valores = list()
+
+for cont in range(0, 5):
+    valores.append(int(input('Digite um valor: ')))
+for c, v in enumerate(valores):
+    print(f'Na posição {c} encontrei o valor {v}!')
+print('Cheguei ao final da lista')
+
+
+#Cópia de listas:
+a = [2,3,4,5,6,]
+b = a[:] #Copia todos elmentos de a
+print(f'Lista A: {a}')
+print(f'Lista B: {b}')
