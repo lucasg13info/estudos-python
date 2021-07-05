@@ -14,7 +14,7 @@
 # valores = [8, 2, 5, 4 , 9 , 3, 0]
 # print(len(valores))
 
-
+#MÉTODOS QUE PODEM SER UTILIZADOS NA LISTA
 num = [2, 5, 9 ,1] # Definindo a lista
 num[2] = 3 #Alterando o valor da posição 2
 num.append(7) #Adicionando o valor 7 no final
@@ -27,3 +27,13 @@ num.remove(2) #Elimina o elemento 2
 print(f'Essa lista tem {len(num)} elementos') # Lista a quantidade de elementos
 
 print(num)
+
+
+
+
+num2 = [0, 4, 5]
+if 5 in num2:
+    num2.remove(5)
+else:
+    print('Não achei o número 5')
+print(num2)
